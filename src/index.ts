@@ -6,7 +6,6 @@ import stakingRoutes from "./routes/stakingRoutes";
 import walletRoutes from "./routes/walletRoutes";
 import swaggerJsDoc from "swagger-jsdoc";
 import { APP_NAME, API_VERSION } from "./constants/constants";
-import path from "path";
 
 const swaggerOptions = {
   definition: {
@@ -14,7 +13,7 @@ const swaggerOptions = {
     info: {
       title: APP_NAME,
       version: API_VERSION,
-      description: "API documentation for the Bun REST API",
+      description: "API documentation for the REST API",
     },
     servers: [
       {
@@ -26,7 +25,7 @@ const swaggerOptions = {
         "/home": {
           get: {
             summary: "Welcome message",
-            description: "Returns a welcome message for the Bun REST API.",
+            description: "Returns a welcome message for the REST API.",
             responses: {
               200: {
                 description: "A JSON object containing the welcome message.",
@@ -37,7 +36,7 @@ const swaggerOptions = {
                       properties: {
                         message: {
                           type: "string",
-                          example: "Welcome to the Bun REST API!",
+                          example: "Welcome to the REST API!",
                         },
                       },
                     },
@@ -139,7 +138,7 @@ app.use(express.json());
 // Swagger setup
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 try {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   console.log("Swagger setup successful!");
 } catch (err) {
   console.error("Swagger failed to load:", err);
