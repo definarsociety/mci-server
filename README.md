@@ -13,7 +13,7 @@ For developers:
 npm run build
 npm run dev
 ```
-And you will find Swagger API Docs on http://localhost:3000/
+And you will find Swagger API Docs on {BASE_URL}/api-docs
 
 To run prod build
 

@@ -17,6 +17,10 @@ const swaggerOptions = {
     },
     servers: [
       {
+        url: "https://mci-server-olive.vercel.app",
+        description: "Deployed server (Vercel)",
+      },
+      {
         url: "http://localhost:3000",
         description: "Local server",
       },
@@ -126,7 +130,7 @@ const swaggerOptions = {
         },
     },
   },
-  apis: ["dist/index.js"], // Change this path if needed
+  apis: ["build/index.js"],
 };
 
 const app = express();
@@ -138,7 +142,7 @@ app.use(express.json());
 // Swagger setup
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 try {
-  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   console.log("Swagger setup successful!");
 } catch (err) {
   console.error("Swagger failed to load:", err);
